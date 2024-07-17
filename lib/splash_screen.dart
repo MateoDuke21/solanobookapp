@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'authentication_screen.dart';
+import 'sliders_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
       context,
-      MaterialPageRoute(builder: (context) => const AuthenticationScreen()),
+      MaterialPageRoute(builder: (context) => const SlidersScreen()),
     );
   }
 
