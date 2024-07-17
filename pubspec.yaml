@@ -64,13 +64,24 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/asher-hall.jpg
+    - assets/images/ashley-grandballroom.jpg
+    - assets/images/ballroom-foyer.jpg
     - assets/images/Caffe-Ysabel.jpg  
     - assets/images/Charlies.jpg
+    - assets/images/cloud-meetingroom.jpg
     - assets/images/deluxe-room.jpg
     - assets/images/exec-suite-room-I.jpg
     - assets/images/exec-suite-room-II.jpg
+    - assets/images/guest-floor-hallway.jpg
     - assets/images/paul-restaurant.jpg
-    - assets/images/Solano bg.png
+    - assets/images/Solano-bg.png
+    - assets/images/solano-hotel.jpg
+    - assets/images/solano-hotel2.jpg
+    - assets/images/solano-hotel3.jpg
+    - assets/images/solanologo.ico
+    - assets/images/solanologo.png
+    - assets/images/Splashscreen-bg.png
     - assets/images/suite-room-I.jpg
     - assets/images/suite-room-II.jpg
     - assets/images/superior-room.jpg
