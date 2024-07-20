@@ -4,7 +4,7 @@ import 'sign_up.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuthenticationScreen extends StatelessWidget {
-  const AuthenticationScreen({Key? key}) : super(key: key);
+  const AuthenticationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AuthenticationScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen[700],
+                backgroundColor: Colors.teal[900],
               ),
               child: const Text('Login'),
             ),
@@ -43,7 +43,7 @@ class AuthenticationScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen[700],
+                backgroundColor: Colors.teal[900],
               ),
               child: const Text('Sign Up'),
             ),

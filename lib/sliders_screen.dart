@@ -4,14 +4,14 @@ import 'authentication_screen.dart'; // Import authentication_screen.dart
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Slider Startup Screen',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.teal,
       ),
       home: const SlidersScreen(),
     );
@@ -19,9 +19,10 @@ class MyApp extends StatelessWidget {
 }
 
 class SlidersScreen extends StatefulWidget {
-  const SlidersScreen({Key? key}) : super(key: key);
+  const SlidersScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SlidersScreenState createState() => _SlidersScreenState();
 }
 
@@ -51,7 +52,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.lightGreen[100], // Set the background color for the entire screen
+        color: Colors.teal[100], // Set the background color for the entire screen
         child: GestureDetector(
           onHorizontalDragEnd: (details) {
             if (details.primaryVelocity! > 0) {
@@ -142,7 +143,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                 child: _currentPage != 0
                     ? IconButton(
                         onPressed: _goToPreviousPage,
-                        icon: Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.arrow_back),
                         color: Colors.black,
                       )
                     : Container(),
@@ -153,7 +154,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                 child: _currentPage < _images.length - 1
                     ? IconButton(
                         onPressed: _goToNextPage,
-                        icon: Icon(Icons.arrow_forward),
+                        icon: const Icon(Icons.arrow_forward),
                         color: Colors.black,
                       )
                     : ElevatedButton(
@@ -167,7 +168,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightGreen[700],
+                          backgroundColor: Colors.teal[900],
                         ),
                         child: const Text(
                           'Get Started',

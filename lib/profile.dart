@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'authentication_screen.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   void _signOut(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Confirm Sign Out'),
-          content: Text('Are you sure you want to sign out?'),
+          title: const Text('Confirm Sign Out'),
+          content: const Text('Are you sure you want to sign out?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('CANCEL'),
+              // ignore: sort_child_properties_last
+              child: const Text('CANCEL'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.black, // Set text color
               ),
@@ -29,7 +30,8 @@ class ProfilePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const AuthenticationScreen()),
                 );
               },
-              child: Text('SIGN OUT'),
+              // ignore: sort_child_properties_last
+              child: const Text('SIGN OUT'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.black, // Set text color
               ),
@@ -45,7 +47,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
-        backgroundColor: Colors.lightGreen[700],
+        backgroundColor: Colors.teal[900],
         actions: [
           IconButton(
             icon: const Icon(Icons.exit_to_app),

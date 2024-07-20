@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 
 class SignupForm extends StatefulWidget {
-  const SignupForm({Key? key}) : super(key: key);
+  const SignupForm({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignupFormState createState() => _SignupFormState();
 }
 
@@ -15,6 +16,7 @@ class _SignupFormState extends State<SignupForm> {
 
   void _signup() {
     // Implement your signup logic here
+    // ignore: avoid_print
     print('Signup with email: ${_emailController.text}, password: ${_passwordController.text}, and confirm password: ${_confirmPasswordController.text}');
     // Navigate to the main app after successful signup
     Navigator.pushReplacement(
@@ -28,7 +30,7 @@ class _SignupFormState extends State<SignupForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign Up'),
-        backgroundColor: Colors.lightGreen[700],
+        backgroundColor: Colors.teal[900],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -60,7 +62,7 @@ class _SignupFormState extends State<SignupForm> {
             ElevatedButton(
               onPressed: _signup,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen[700],
+                backgroundColor: Colors.teal[900],
               ),
               child: const Text('Sign Up'),
             ),

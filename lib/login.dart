@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+  const LoginForm({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginFormState createState() => _LoginFormState();
 }
 
@@ -14,6 +15,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void _login() {
     // Implement your login logic here
+    // ignore: avoid_print
     print('Login with email: ${_emailController.text} and password: ${_passwordController.text}');
     // Navigate to the main app after successful login
     Navigator.pushReplacement(
@@ -27,7 +29,7 @@ class _LoginFormState extends State<LoginForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
-        backgroundColor: Colors.lightGreen[700],
+        backgroundColor: Colors.teal[900],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,7 +53,7 @@ class _LoginFormState extends State<LoginForm> {
             ElevatedButton(
               onPressed: _login,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen[700],
+                backgroundColor: Colors.teal[900],
               ),
               child: const Text('Login'),
             ),
