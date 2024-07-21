@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'authentication_screen.dart'; // Import authentication_screen.dart
+import 'login.dart'; // Import authentication_screen.dart
 
 void main() => runApp(const MyApp());
 
@@ -51,7 +51,8 @@ class _SlidersScreenState extends State<SlidersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.lightGreen[100], // Set the background color for the entire screen
+        color: Colors
+            .lightGreen[100], // Set the background color for the entire screen
         child: GestureDetector(
           onHorizontalDragEnd: (details) {
             if (details.primaryVelocity! > 0) {
@@ -97,7 +98,8 @@ class _SlidersScreenState extends State<SlidersScreen> {
                             ),
                             const SizedBox(height: 10),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 40.0),
                               child: Text(
                                 _descriptions[index],
                                 textAlign: TextAlign.center,
@@ -162,7 +164,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AuthenticationScreen(),
+                              builder: (context) => const LoginForm(),
                             ),
                           );
                         },
@@ -172,9 +174,10 @@ class _SlidersScreenState extends State<SlidersScreen> {
                         child: const Text(
                           'Get Started',
                           style: TextStyle(
-                            color: Colors.white, // Change this to your desired color
+                            color: Colors
+                                .white, // Change this to your desired color
                           ),
-                          ),
+                        ),
                       ),
               ),
             ],
