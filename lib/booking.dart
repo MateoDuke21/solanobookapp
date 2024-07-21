@@ -5,7 +5,7 @@ import 'package:quickalert/quickalert.dart';
 void main() => runApp(const BookingApp());
 
 class BookingApp extends StatelessWidget {
-  const BookingApp({Key? key}) : super(key: key);
+  const BookingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,10 @@ class BookingApp extends StatelessWidget {
 }
 
 class BookingScreen extends StatefulWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+  const BookingScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _BookingScreenState createState() => _BookingScreenState();
 }
 

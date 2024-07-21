@@ -72,14 +72,29 @@ flutter:
     - assets/images/asher-hall.jpg
     - assets/images/ashley-grandballroom.jpg
     - assets/images/ballroom-foyer.jpg
-    - assets/images/Caffe-Ysabel.jpg  
+    - assets/images/caffe_menu1.jpg  
+    - assets/images/Caffe-Ysabel.jpg
+    - assets/images/Caffe-Ysabel2.jpg
+    - assets/images/char_drinks1.jpg
+    - assets/images/char_drinks2.jpg    
     - assets/images/Charlies.jpg
     - assets/images/cloud-meetingroom.jpg
     - assets/images/deluxe-room.jpg
+    - assets/images/dining.jpg
     - assets/images/exec-suite-room-I.jpg
     - assets/images/exec-suite-room-II.jpg
     - assets/images/guest-floor-hallway.jpg
     - assets/images/paul-restaurant.jpg
+    - assets/images/paul-restaurant2.jpg
+    - assets/images/pr_menu1.jpg
+    - assets/images/pr_menu2.jpg
+    - assets/images/pr_menu3.jpg
+    - assets/images/pr_menu4.jpg
+    - assets/images/pr_menu5.jpg
+    - assets/images/pr_menu6.jpg
+    - assets/images/pr_menu7.jpg
+    - assets/images/pr_menu8.jpg
+    - assets/images/pr_menu9.jpg
     - assets/images/Solano-bg.png
     - assets/images/solano-hotel.jpg
     - assets/images/solano-hotel2.jpg

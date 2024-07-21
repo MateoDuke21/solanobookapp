@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:solanobookapp/home_page.dart';
+import 'package:solanobookapp/deluxe_room.dart';
+import 'package:solanobookapp/exec_room.dart';
+import 'package:solanobookapp/exec_roomII.dart';
+import 'package:solanobookapp/suite_room.dart';
+import 'package:solanobookapp/suite_roomII.dart';
+import 'package:solanobookapp/superior_room.dart';
 
 class RoomsTab extends StatelessWidget {
   const RoomsTab({super.key});
@@ -12,7 +17,7 @@ class RoomsTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Top Section
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.5, // Adjust height as needed
               child: Stack(
                 fit: StackFit.expand,
@@ -39,15 +44,15 @@ class RoomsTab extends StatelessWidget {
                   Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
                   ),
                   // Content
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,15 +95,15 @@ class RoomsTab extends StatelessWidget {
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     final cardData = [
-                      {'image': 'assets/images/deluxe-room.jpg', 'title': '\$120', 'description': 'Deluxe Room'},
-                      {'image': 'assets/images/suite-room-I.jpg', 'title': '\$150', 'description': 'Suite Room I'},
-                      {'image': 'assets/images/suite-room-II.jpg', 'title': '\$180', 'description': 'Suite Room II'},
-                      {'image': 'assets/images/superior-room.jpg', 'title': '\$200', 'description': 'Superior Room'},
-                      {'image': 'assets/images/exec-suite-room-I.jpg', 'title': '\$230', 'description': 'Executive Suite Room I'},
-                      {'image': 'assets/images/exec-suite-room-II.jpg', 'title': '\$250', 'description': 'Executive Suite Room II'}
+                      {'image': 'assets/images/deluxe-room.jpg', 'title': '\$120', 'description': 'Deluxe Room', 'route': const DeluxeRoom()},
+                      {'image': 'assets/images/suite-room-I.jpg', 'title': '\$150', 'description': 'Suite Room I', 'route': const SuiteRoom()},
+                      {'image': 'assets/images/suite-room-II.jpg', 'title': '\$180', 'description': 'Suite Room II', 'route': const SuiteRoomII()},
+                      {'image': 'assets/images/superior-room.jpg', 'title': '\$200', 'description': 'Superior Room', 'route': const SuperiorRoom()},
+                      {'image': 'assets/images/exec-suite-room-I.jpg', 'title': '\$230', 'description': 'Executive Suite Room I', 'route': const ExecRoom()},
+                      {'image': 'assets/images/exec-suite-room-II.jpg', 'title': '\$250', 'description': 'Executive Suite Room II', 'route': const ExecRoomII()}
                     ];
                     final data = cardData[index];
-                    return _buildCardWithRouteButton(data['image']!, data['title']!, data['description']!, context, index);
+                    return _buildCardWithRouteButton(data['image'] as String, data['title'] as String, data['description'] as String, context, data['route'] as Widget);
                   },
                 ),
               ),
@@ -124,7 +129,7 @@ class RoomsTab extends StatelessWidget {
     );
   }
 
-  Widget _buildCardWithRouteButton(String imagePath, String title, String description, BuildContext context, int index) {
+  Widget _buildCardWithRouteButton(String imagePath, String title, String description, BuildContext context, Widget route) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: Card(
@@ -166,7 +171,7 @@ class RoomsTab extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const MyHomePage(),
+                          builder: (context) => route,
                         ),
                       );
                     },
@@ -190,37 +195,6 @@ class RoomsTab extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class RoomDetailPage extends StatelessWidget {
-  final int index;
-
-  const RoomDetailPage({super.key, required this.index});
-
-  @override
-  Widget build(BuildContext context) {
-    final roomDetails = [
-      {'title': 'Deluxe Room', 'description': 'Detailed description for Deluxe Room'},
-      {'title': 'Suite Room I', 'description': 'Detailed description for Suite Room I'},
-      {'title': 'Suite Room II', 'description': 'Detailed description for Suite Room II'},
-      {'title': 'Superior Room', 'description': 'Detailed description for Superior Room'},
-      {'title': 'Executive Suite Room I', 'description': 'Detailed description for Executive Suite Room I'},
-      {'title': 'Executive Suite Room II', 'description': 'Detailed description for Executive Suite Room II'}
-    ];
-
-    final room = roomDetails[index];
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(room['title']!),
-        backgroundColor: Colors.teal[900],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(room['description']!),
       ),
     );
   }

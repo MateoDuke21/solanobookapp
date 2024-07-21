@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-class SuperiorRoom extends StatelessWidget {
-  const SuperiorRoom({super.key});
+class SuiteRoom extends StatelessWidget {
+  const SuiteRoom({super.key});
 
   @override
   Widget build(BuildContext context) {
     final roomDetails = {
-      'title': 'Superior Room',
-      'imageUrl': 'assets/images/superior-room.jpg', // Make sure this path is correct
-      'price': '\$200 per night',
-      'reviews': '4.5 (70 reviews)',
-      'features': 'Experience luxury and comfort in our Superior Room. Choose between a plush King Bed or two Double Beds in this spacious 29 sqm room. With a convenient work desk, modern design, and elegant ambiance, it’s the perfect retreat for both business and leisure travelers.',
+      'title': 'Suite Room I',
+      'imageUrl': 'assets/images/suite-room-I.jpg', // Make sure this path is correct
+      'price': '\$150 per night',
+      'reviews': '4.8 (90 reviews)',
+      'features': 'Discover the epitome of luxury in our Suite Room I. Relax in the California King Bed within the expansive 53 sqm space. This suite also features a kitchenette, small living room, work desk, and dining table, providing both functionality and sophistication. With its modern design and elegant ambiance, it’s a haven of indulgence.',
       'guests': '2 adults, 2 Children (11 years old and below)',
-      'facilities': 'In Room Dining Service, Air Conditioning, 220V Outlet, High Speed Internet, Telephone, Smart TV, In-room Safety Box, Coffee and Tea Makers, Toiletries Set, Bath Amenities, Hot and Cold Showers, Hair Dryer',
+      'facilities': 'In Room Dining Service, Air Conditioning, 220V Outlet, High Speed Internet, Telephone, Smart TV, In-room Safety Box, Coffee and Tea Makers, Toiletries Set, Bath Amenities, Hot and Cold Showers, Hair Dryer, Kitchenette, Dining Table',
     };
 
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Superior Room',
+          'Suite Room I',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
@@ -61,7 +61,7 @@ class SuperiorRoom extends StatelessWidget {
                       Icon(Icons.star, color: Colors.amber, size: 20),
                       Icon(Icons.star_half, color: Colors.amber, size: 20),
                       SizedBox(width: 8),
-                      Text('4.5 (70 reviews)'),
+                      Text('4.8 (90 reviews)'),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -100,6 +100,8 @@ class SuperiorRoom extends StatelessWidget {
                       FacilityIcon(icon: Icons.shower, label: 'Hot Shower'),
                       FacilityIcon(icon: Icons.bathroom, label: 'Bath Amenities'),
                       FacilityIcon(icon: Icons.air, label: 'Hair Dryer'),
+                      FacilityIcon(icon: Icons.kitchen, label: 'Kitchenette'),
+                      FacilityIcon(icon: Icons.dining, label: 'Dining Table'),
                     ],
                   ),
                   const SizedBox(height: 16),

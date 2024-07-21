@@ -233,7 +233,7 @@
                   final cardData = [
                     {'image': 'assets/images/paul-restaurant.jpg', 'title': 'Paul Restaurant', 'description': 'Experience dining at a restaurant that delights your palate'},
                     {'image': 'assets/images/Caffe-Ysabel.jpg', 'title': 'Caffe Ysabel', 'description': 'The cafe for irresistible pastries, authentic coffee, and other comfort foods'},
-                    {'image': 'assets/images/Charlies.jpg', 'title': 'Charlies', 'description': 'Offers a relaxing and friendly atmosphere all our guests can enjoy.'}
+                    {'image': 'assets/images/Charlies.jpg', 'title': 'Charlies Bar & Grill', 'description': 'Offers a relaxing and friendly atmosphere all our guests can enjoy.'}
                   ];
                   final data = cardData[index];
                   return _buildCardDiningButton(data['image']!, data['title']!, data['description']!, context);
@@ -375,7 +375,7 @@
                       // Navigate to Dining page
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => DiningPage()),
+                        MaterialPageRoute(builder: (context) => const DiningPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -444,6 +444,7 @@
     const SearchTab({super.key});
 
     @override
+    // ignore: library_private_types_in_public_api
     _SearchTabState createState() => _SearchTabState();
   }
 
@@ -464,7 +465,7 @@
     final List<Map<String, String>> _dining = [
       {'title': 'Paul Restaurant', 'description': 'Dine at Paul Restaurant, located on the 3rd floor of the hotel. Experience dining at a restaurant that delights your palate, with a menu that showcases elevated dishes inspired by cuisines from around the Philippines, expertly prepared by our seasoned chefs.', 'image': 'assets/images/paul-restaurant.jpg'},
       {'title': 'Caffe Ysabel', 'description': 'Caffe Ysabel is the cafe to be if you are looking for irresistible pastries, authentic coffee, and other comfort foods in Lipa City. The menu features contemporary-infused Ysabel’s Favorites that everyone must try.', 'image': 'assets/images/Caffe-Ysabel.jpg'},
-      {'title': 'Charlies', 'description': 'Adjacent to Paul Restaurant, Charlie’s Bar and Grill offers a relaxing and friendly atmosphere all our guests can enjoy. Expect freshly cooked meals and hand-crafted cocktails while enjoying the serene view from this alfresco dining spot', 'image': 'assets/images/Charlies.jpg'},
+      {'title': 'Charlies Bar & Grill', 'description': 'Adjacent to Paul Restaurant, Charlie’s Bar and Grill offers a relaxing and friendly atmosphere all our guests can enjoy. Expect freshly cooked meals and hand-crafted cocktails while enjoying the serene view from this alfresco dining spot', 'image': 'assets/images/Charlies.jpg'},
     ];
 
     final List<Map<String, String>> _meetings = [

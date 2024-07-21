@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'authentication_screen.dart';
+import 'login.dart'; // Import authentication_screen.dart
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -27,7 +27,7 @@ class ProfilePage extends StatelessWidget {
                 // Implement sign out functionality here
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const AuthenticationScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginForm()),
                 );
               },
               // ignore: sort_child_properties_last
