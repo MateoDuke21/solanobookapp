@@ -1,4 +1,5 @@
   import 'package:flutter/material.dart';
+  import 'package:solanobookapp/favorites.dart';
   import 'profile.dart';
   import 'rooms_tab.dart';
   import 'dining.dart';
@@ -80,6 +81,28 @@
                 onTap: () {
                   Navigator.pop(context);
                   _onItemTapped(2);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.dinner_dining),
+                title: const Text('Dining'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const DiningPage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.favorite),
+                title: const Text('Favorites'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const FavoritesPage()),
+                  );
                 },
               ),
               ListTile(
@@ -175,7 +198,13 @@
                             ),
                             IconButton(
                               icon: const Icon(Icons.favorite, color: Colors.white),
-                              onPressed: () {},
+                              onPressed: () {
+                                // Navigate to Dining page
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const FavoritesPage()),
+                                );
+                              },
                             ),
                           ],
                         ),

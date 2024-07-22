@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'favorites_manager.dart';  // Import favorites manager
 
-class DeluxeRoom extends StatelessWidget {
+class DeluxeRoom extends StatefulWidget {
   const DeluxeRoom({super.key});
+
+  @override
+  _DeluxeRoomState createState() => _DeluxeRoomState();
+}
+
+class _DeluxeRoomState extends State<DeluxeRoom> {
+  late bool isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    final roomDetails = {
+      'title': 'Deluxe Room',
+    };
+    isFavorite = FavoritesManager.isFavorite(roomDetails['title']!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +63,17 @@ class DeluxeRoom extends StatelessWidget {
                   Text(
                     roomDetails['title']!,
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                        FavoritesManager.toggleFavorite(roomDetails);
+                      });
+                    },
                   ),
                   const SizedBox(height: 8),
                   Text(

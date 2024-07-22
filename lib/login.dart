@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'user_data.dart'; // Import the user_data.dart file
 import 'home_page.dart';
-import 'sign_up.dart'; // Import the sign_up.dart file
+import 'sign_up.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// LoginForm Class
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginFormState createState() => _LoginFormState();
 }
 
@@ -23,8 +22,7 @@ class _LoginFormState extends State<LoginForm> {
       String email = _emailController.text;
       String password = _passwordController.text;
 
-      // Replace with your authentication logic
-      if (email == 'matt@gmail.com' && password == 'mateo') {
+      if (UserData.authenticate(email, password)) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MyHomePage()),
@@ -73,6 +71,7 @@ class _LoginFormState extends State<LoginForm> {
                     TextFormField(
                       controller: _emailController,
                       style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon:
                             const Icon(Icons.email, color: Colors.white),
@@ -80,6 +79,10 @@ class _LoginFormState extends State<LoginForm> {
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
                         ),
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -96,6 +99,7 @@ class _LoginFormState extends State<LoginForm> {
                     TextFormField(
                       controller: _passwordController,
                       style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
                         suffixIcon: IconButton(
@@ -115,6 +119,10 @@ class _LoginFormState extends State<LoginForm> {
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
                         ),
                       ),
                       obscureText: !_isPasswordVisible,
@@ -137,14 +145,14 @@ class _LoginFormState extends State<LoginForm> {
                         minimumSize: const Size(150, 50),
                       ),
                       child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
+                        'Login',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
-                    ),
                     ),
                     const SizedBox(height: 10),
                     TextButton(
@@ -165,7 +173,6 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    // Removed Facebook, Google, and Apple icons
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -186,7 +193,7 @@ class _LoginFormState extends State<LoginForm> {
                           fontSize: 16,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -198,36 +205,47 @@ class _LoginFormState extends State<LoginForm> {
   }
 }
 
-// PasswordResetPage Class
 class PasswordResetPage extends StatefulWidget {
   const PasswordResetPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _PasswordResetPageState createState() => _PasswordResetPageState();
 }
 
 class _PasswordResetPageState extends State<PasswordResetPage> {
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   void _resetPassword() {
-    if (_formKey.currentState!.validate()) {
-      String email = _emailController.text;
+  if (_formKey.currentState!.validate()) {
+    String email = _emailController.text;
+    String newPassword = _newPasswordController.text;
 
-      // Replace with your password reset logic
+    final user = UserData.getUserByEmail(email);
+
+    // ignore: unnecessary_null_comparison
+    if (user != null) {
+      UserData.updatePassword(email, newPassword);
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Password reset link sent to your email')),
+        const SnackBar(content: Text('Password reset successfully')),
       );
 
-      // Navigate back to the login page after sending the reset link
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a valid email')),
+        const SnackBar(content: Text('Email is not registered')),
       );
     }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Please fix the errors in the form')),
+    );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -261,6 +279,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                     TextFormField(
                       controller: _emailController,
                       style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon:
                             const Icon(Icons.email, color: Colors.white),
@@ -269,6 +288,10 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
+                        ),
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
@@ -276,6 +299,58 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                             value.isEmpty ||
                             !RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
                           return 'Invalid Email Format';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: _newPasswordController,
+                      style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                        labelText: 'New Password',
+                        labelStyle: const TextStyle(color: Colors.white),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
+                        ),
+                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your new password';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: _confirmPasswordController,
+                      style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                        labelText: 'Confirm Password',
+                        labelStyle: const TextStyle(color: Colors.white),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
+                        ),
+                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please confirm your new password';
+                        } else if (value != _newPasswordController.text) {
+                          return 'Passwords do not match';
                         }
                         return null;
                       },
@@ -292,14 +367,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                         minimumSize: const Size(150, 50),
                       ),
                       child: const Text(
-                      'Reset',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
+                        'Reset',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
-                    ),
                     ),
                     const SizedBox(height: 20),
                     TextButton(

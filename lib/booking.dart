@@ -23,7 +23,6 @@ class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _BookingScreenState createState() => _BookingScreenState();
 }
 
@@ -80,135 +79,117 @@ class _BookingScreenState extends State<BookingScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Center(
-                child: Text(
-                  'Select Date',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                    color: Colors.teal,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () => _selectDate(context, true),
-                      child: Container(
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.teal),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Check in',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                            Text(
-                              _checkInDate != null
-                                  ? DateFormat('yyyy-MM-dd').format(_checkInDate!)
-                                  : 'Select Date',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () => _selectDate(context, false),
-                      child: Container(
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.teal),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Check out',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                            Text(
-                              _checkOutDate != null
-                                  ? DateFormat('yyyy-MM-dd').format(_checkOutDate!)
-                                  : 'Select Date',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              _buildInfoRow('Number of Days', _numberOfDays.toString()),
-              const SizedBox(height: 16),
-              _buildInfoRow('Total Amount', '\$$_totalAmount'),
-              const SizedBox(height: 16),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    QuickAlert.show(
-                      context: context,
-                      type: QuickAlertType.success,
-                      text: 'Transaction Completed Successfully!',
-                      autoCloseDuration: const Duration(seconds: 2),
-                      );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal, // background color
-                    padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Poppins',
-                      color: Colors.white, // text color
-                    ),
-                  ),
-                ),
-              ),
-            ],
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/Solano-bg.png',
+              fit: BoxFit.cover,
+            ),
           ),
+          Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Select Date',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins',
+                      color: Colors.teal,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  _buildDateSelector(context, 'Check in', _checkInDate, true),
+                  const SizedBox(height: 10),
+                  _buildDateSelector(context, 'Check out', _checkOutDate, false),
+                  const SizedBox(height: 20),
+                  _buildInfoRow('Number of Days', _numberOfDays.toString()),
+                  const SizedBox(height: 16),
+                  _buildInfoRow('Total Amount', '\$$_totalAmount'),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.success,
+                          text: 'Transaction Completed Successfully!',
+                          autoCloseDuration: const Duration(seconds: 2),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal,
+                        padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 15.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDateSelector(BuildContext context, String label, DateTime? date, bool isCheckIn) {
+    return GestureDetector(
+      onTap: () => _selectDate(context, isCheckIn),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.teal),
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.white.withOpacity(0.8),
+        ),
+        child: Column(
+          children: [
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Poppins',
+                color: Colors.grey[700],
+              ),
+            ),
+            Text(
+              date != null
+                  ? DateFormat('yyyy-MM-dd').format(date)
+                  : 'Select Date',
+              style: const TextStyle(
+                fontSize: 16,
+                fontFamily: 'Poppins',
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildInfoRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

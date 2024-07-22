@@ -1,50 +1,34 @@
 import 'package:flutter/material.dart';
-import 'login.dart'; // Import the login page
+import 'user_data.dart'; // Import the user_data.dart file
 
-// Dummy storage for user credentials
-class UserStorage {
-  static final Map<String, String> _users = {};
-
-  static void saveUser(String email, String password) {
-    _users[email] = password;
-  }
-
-  static bool authenticateUser(String email, String password) {
-    return _users[email] == password;
-  }
-}
-
-// SignupForm Class
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SignupFormState createState() => _SignupFormState();
 }
 
 class _SignupFormState extends State<SignupForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
-
-  void _signup() {
+  void _signUp() {
     if (_formKey.currentState!.validate()) {
-      // Save user credentials to the dummy storage
-      UserStorage.saveUser(
-        _emailController.text,
-        _passwordController.text,
+      String email = _emailController.text;
+      String password = _passwordController.text;
+
+      UserData.addUser(email, password);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Account created successfully')),
       );
 
-      // Navigate to the login screen after successful signup
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginForm()),
+      Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fix the errors in the form')),
       );
     }
   }
@@ -56,7 +40,7 @@ class _SignupFormState extends State<SignupForm> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/Solano-bg.png', // Ensure this path is correct
+              'assets/images/Solano-bg.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -69,25 +53,29 @@ class _SignupFormState extends State<SignupForm> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Sign-Up',
+                      'Sign Up',
                       style: TextStyle(
-                        fontSize: 40,
+                        fontSize: 45,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 212, 200, 85),
                         fontFamily: 'Poppins',
+                        color: Color.fromARGB(255, 212, 200, 85),
                       ),
                     ),
                     const SizedBox(height: 30),
                     TextFormField(
                       controller: _emailController,
                       style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
                       decoration: InputDecoration(
-                        prefixIcon:
-                            const Icon(Icons.email, color: Colors.white),
+                        prefixIcon: const Icon(Icons.email, color: Colors.white),
                         labelText: 'Email',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
                         ),
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -103,29 +91,21 @@ class _SignupFormState extends State<SignupForm> {
                     const SizedBox(height: 10),
                     TextFormField(
                       controller: _passwordController,
-                      obscureText: _obscurePassword,
                       style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscurePassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscurePassword = !_obscurePassword;
-                            });
-                          },
-                        ),
                         labelText: 'Password',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
+                        ),
                       ),
+                      obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
@@ -136,35 +116,25 @@ class _SignupFormState extends State<SignupForm> {
                     const SizedBox(height: 10),
                     TextFormField(
                       controller: _confirmPasswordController,
-                      obscureText: _obscureConfirmPassword,
                       style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscureConfirmPassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureConfirmPassword =
-                                  !_obscureConfirmPassword;
-                            });
-                          },
-                        ),
                         labelText: 'Confirm Password',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(color: Colors.teal),
+                        ),
                       ),
+                      obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please confirm your password';
-                        }
-                        if (value != _passwordController.text) {
+                        } else if (value != _passwordController.text) {
                           return 'Passwords do not match';
                         }
                         return null;
@@ -172,7 +142,7 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: _signup,
+                      onPressed: _signUp,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 3, 92, 65),
                         foregroundColor: Colors.white,
@@ -182,27 +152,26 @@ class _SignupFormState extends State<SignupForm> {
                         minimumSize: const Size(150, 50),
                       ),
                       child: const Text(
-                      'Sign-Up',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
-                    ),
                     ),
                     const SizedBox(height: 20),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginForm()),
-                        );
+                        Navigator.pop(context);
                       },
                       child: const Text(
-                        'Already have an account? Login',
-                        style: TextStyle(color: Colors.white),
+                        'Back to Login',
+                        style: TextStyle(color: Colors.white,
+                        fontSize: 13,
+                        fontFamily: 'Poppins',
+                        ),
                       ),
                     ),
                   ],
