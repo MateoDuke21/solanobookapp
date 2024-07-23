@@ -5,6 +5,7 @@ import 'package:solanobookapp/exec_roomII.dart';
 import 'package:solanobookapp/suite_room.dart';
 import 'package:solanobookapp/suite_roomII.dart';
 import 'package:solanobookapp/superior_room.dart';
+import 'home_page.dart';
 
 class RoomsTab extends StatelessWidget {
   const RoomsTab({super.key});
@@ -46,8 +47,12 @@ class RoomsTab extends StatelessWidget {
                     child: IconButton(
                       icon: const Icon(Icons.arrow_back, color: Colors.white),
                       onPressed: () {
-                        Navigator.pop(context);
-                      },
+                            // Navigate to the Home page
+                          Navigator.pushReplacement(
+                            context,
+                          MaterialPageRoute(builder: (context) => const MyHomePage()),
+                          );
+                        },
                     ),
                   ),
                   // Content
@@ -99,8 +104,8 @@ class RoomsTab extends StatelessWidget {
                       {'image': 'assets/images/suite-room-I.jpg', 'title': '\$150', 'description': 'Suite Room I', 'route': const SuiteRoom()},
                       {'image': 'assets/images/suite-room-II.jpg', 'title': '\$180', 'description': 'Suite Room II', 'route': const SuiteRoomII()},
                       {'image': 'assets/images/superior-room.jpg', 'title': '\$200', 'description': 'Superior Room', 'route': const SuperiorRoom()},
-                      {'image': 'assets/images/exec-suite-room-I.jpg', 'title': '\$230', 'description': 'Executive Suite Room I', 'route': const ExecRoom()},
-                      {'image': 'assets/images/exec-suite-room-II.jpg', 'title': '\$250', 'description': 'Executive Suite Room II', 'route': const ExecRoomII()}
+                      {'image': 'assets/images/executive-room-I.jpg', 'title': '\$230', 'description': 'Executive Suite Room I', 'route': const ExecRoom()},
+                      {'image': 'assets/images/executive-room-II.jpg', 'title': '\$250', 'description': 'Executive Suite Room II', 'route': const ExecRoomII()}
                     ];
                     final data = cardData[index];
                     return _buildCardWithRouteButton(data['image'] as String, data['title'] as String, data['description'] as String, context, data['route'] as Widget);

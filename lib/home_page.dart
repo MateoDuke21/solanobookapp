@@ -3,6 +3,7 @@
   import 'profile.dart';
   import 'rooms_tab.dart';
   import 'dining.dart';
+  import 'my_bookings.dart';
 
   class MyHomePage extends StatefulWidget {
     const MyHomePage({super.key});
@@ -102,6 +103,17 @@
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const FavoritesPage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.book),
+                title: const Text('My Bookings'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyBookingsPage()),
                   );
                 },
               ),
@@ -241,8 +253,8 @@
                     {'image': 'assets/images/suite-room-I.jpg', 'title': '\$150', 'description': 'Suite Room I'},
                     {'image': 'assets/images/suite-room-II.jpg', 'title': '\$180', 'description': 'Suite Room II'},
                     {'image': 'assets/images/superior-room.jpg', 'title': '\$200', 'description': 'Superior Room'},
-                    {'image': 'assets/images/exec-suite-room-I.jpg', 'title': '\$230', 'description': 'Executive Suite Room I'},
-                    {'image': 'assets/images/exec-suite-room-II.jpg', 'title': '\$250', 'description': 'Executive Suite Room II'}
+                    {'image': 'assets/images/executive-room-I.jpg', 'title': '\$230', 'description': 'Executive Suite Room I'},
+                    {'image': 'assets/images/executive-room-II.jpg', 'title': '\$250', 'description': 'Executive Suite Room II'}
                   ];
                   final data = cardData[index];
                   return _buildCardRoomButton(data['image']!, data['title']!, data['description']!, context);
@@ -341,7 +353,7 @@
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to the RoomsTab page
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => const RoomsTab()),
                     );
@@ -487,8 +499,8 @@
       {'title': 'Suite Room I', 'description': 'Bed Configuration: One (1) California King Bed \n Capacity: 2 adults, 2 Children (11 years old and below) \n Size: 53 sq.m.', 'image': 'assets/images/suite-room-I.jpg'},
       {'title': 'Suite Room II', 'description': 'Bed Configuration: One (1) King Bed and One (1) Double Bed \n Capacity: 3 adults, 2 Children (11 years old and below) \n Size: 53 sq.m.', 'image': 'assets/images/suite-room-II.jpg'},
       {'title': 'Superior Room', 'description': 'Bed Configuration: Choice of One (1) King Bed or Two (2) Double Beds \n Capacity: 2 adults, 2 Children (11 years old and below) \n Size: 29 sq.m.', 'image': 'assets/images/superior-room.jpg'},
-      {'title': 'Executive Suite Room I', 'description': 'Bed Configuration: One (1) California King Bed \n Capacity: 2 adults, 2 Children (11 years old and below) \n Size: 55 sq.m.', 'image': 'assets/images/exec-suite-room-I.jpg'},
-      {'title': 'Executive Suite Room II', 'description': 'Bed Configuration: One (1) King Bed and One (1) Double Bed \n Capacity: 3 adults, 2 Children (11 years old and below) \n Size: 55 sq.m.', 'image': 'assets/images/exec-suite-room-II.jpg'},
+      {'title': 'Executive Suite Room I', 'description': 'Bed Configuration: One (1) California King Bed \n Capacity: 2 adults, 2 Children (11 years old and below) \n Size: 55 sq.m.', 'image': 'assets/images/executive-room-I.jpg'},
+      {'title': 'Executive Suite Room II', 'description': 'Bed Configuration: One (1) King Bed and One (1) Double Bed \n Capacity: 3 adults, 2 Children (11 years old and below) \n Size: 55 sq.m.', 'image': 'assets/images/executive-room-II.jpg'},
     ];
 
     final List<Map<String, String>> _dining = [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'favorites_manager.dart';  // Import favorites manager
+import 'booking.dart';  // Import the booking page
 
 class ExecRoom extends StatefulWidget {
   const ExecRoom({super.key});
@@ -24,7 +25,7 @@ class _ExecRoomState extends State<ExecRoom> {
   Widget build(BuildContext context) {
     final roomDetails = {
       'title': 'Executive Room I',
-      'imageUrl': 'assets/images/exec-suite-room-I.jpg', // Make sure this path is correct
+      'imageUrl': 'assets/images/executive-room-I.jpg', // Make sure this path is correct
       'price': '\$230 per night',
       'reviews': '4.8 (95 reviews)',
       'features': 'Experience the ultimate in luxury and relaxation in our Executive Suite Room I. Unwind in the California King Bed and indulge in the separate jetted bathtub in this 53 sqm suite. With a small living room, work desk, and modern design, it offers a perfect blend of sophistication and comfort.',
@@ -136,7 +137,15 @@ class _ExecRoomState extends State<ExecRoom> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Add booking functionality
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookingPage(
+                              roomTitle: roomDetails['title']!,
+                              pricePerDay: 230.0,
+                            ),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.teal[900],

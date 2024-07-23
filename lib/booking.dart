@@ -1,37 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:quickalert/quickalert.dart';
+import 'my_bookings_manager.dart'; // Import your bookings manager
+// ignore: unused_import
+import 'my_bookings.dart'; // Import your bookings page
+import 'rooms_tab.dart'; 
 
-void main() => runApp(const BookingApp());
+class BookingPage extends StatefulWidget {
+  final String roomTitle;
+  final double pricePerDay;
 
-class BookingApp extends StatelessWidget {
-  const BookingApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Booking Screen',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      home: const BookingScreen(),
-    );
-  }
-}
-
-class BookingScreen extends StatefulWidget {
-  const BookingScreen({super.key});
+  const BookingPage({
+    Key? key,
+    required this.roomTitle,
+    required this.pricePerDay,
+  }) : super(key: key);
 
   @override
-  _BookingScreenState createState() => _BookingScreenState();
+  _BookingPageState createState() => _BookingPageState();
 }
 
-class _BookingScreenState extends State<BookingScreen> {
+class _BookingPageState extends State<BookingPage> {
   DateTime? _checkInDate;
   DateTime? _checkOutDate;
   int _numberOfDays = 0;
   double _totalAmount = 0.0;
-  final double _bookingPricePerDay = 110.0; // Example price per day
 
   Future<void> _selectDate(BuildContext context, bool isCheckIn) async {
     final DateTime? picked = await showDatePicker(
@@ -45,7 +38,7 @@ class _BookingScreenState extends State<BookingScreen> {
         if (isCheckIn) {
           _checkInDate = picked;
           if (_checkOutDate != null && _checkOutDate!.isBefore(_checkInDate!)) {
-            _checkOutDate = null; // Reset check-out date if it's before check-in
+            _checkOutDate = null;
           }
         } else {
           _checkOutDate = picked;
@@ -58,26 +51,58 @@ class _BookingScreenState extends State<BookingScreen> {
   void _calculateNumberOfDays() {
     if (_checkInDate != null && _checkOutDate != null) {
       _numberOfDays = _checkOutDate!.difference(_checkInDate!).inDays;
-      _totalAmount = _numberOfDays * _bookingPricePerDay;
+      _totalAmount = _numberOfDays * widget.pricePerDay;
     }
+  }
+
+  void _continueBooking() {
+    // Save booking details
+    final bookingDetails = {
+      'title': widget.roomTitle,
+      'imageUrl': 'assets/images/${widget.roomTitle.toLowerCase().replaceAll(' ', '-')}.jpg',
+      'price': '\$${_totalAmount.toStringAsFixed(2)}',
+    };
+
+    MyBookingsManager.addBooking(bookingDetails);
+
+    // Show success dialog
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.success,
+      text: 'Transaction Completed Successfully!',
+      autoCloseDuration: const Duration(seconds: 2),
+      onConfirmBtnTap: () {
+        Navigator.pop(context); // Close the dialog
+        Navigator.pop(context); // Go back to the previous screen
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.teal[900],
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const RoomsTab()),
+            );
+          },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black),
-            onPressed: () {},
+        title: Text(
+          'Booking ${widget.roomTitle}',
+          style: const TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins',
+            color: Colors.yellow,
           ),
-        ],
+        ),
       ),
       body: Stack(
         children: [
@@ -99,7 +124,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins',
-                      color: Colors.teal,
+                      color: Colors.yellow,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -109,18 +134,13 @@ class _BookingScreenState extends State<BookingScreen> {
                   const SizedBox(height: 20),
                   _buildInfoRow('Number of Days', _numberOfDays.toString()),
                   const SizedBox(height: 16),
-                  _buildInfoRow('Total Amount', '\$$_totalAmount'),
+                  _buildInfoRow('Total Amount', '\$${_totalAmount.toStringAsFixed(2)}'),
                   const SizedBox(height: 16),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {
-                        QuickAlert.show(
-                          context: context,
-                          type: QuickAlertType.success,
-                          text: 'Transaction Completed Successfully!',
-                          autoCloseDuration: const Duration(seconds: 2),
-                        );
-                      },
+                      onPressed: _checkInDate == null || _checkOutDate == null || _numberOfDays <= 0
+                          ? null
+                          : _continueBooking,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.teal,
                         padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 15.0),
@@ -165,7 +185,7 @@ class _BookingScreenState extends State<BookingScreen> {
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Poppins',
-                color: Colors.grey[700],
+                color: Colors.teal[700],
               ),
             ),
             Text(
@@ -198,7 +218,7 @@ class _BookingScreenState extends State<BookingScreen> {
             style: const TextStyle(
               fontSize: 16,
               fontFamily: 'Poppins',
-              color: Colors.grey,
+              color: Colors.teal,
             ),
           ),
           Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'favorites_manager.dart';  // Import favorites manager
+import 'booking.dart';  // Import the booking page
 
 class SuiteRoomII extends StatefulWidget {
   const SuiteRoomII({super.key});
@@ -136,7 +137,15 @@ class _SuiteRoomIIState extends State<SuiteRoomII> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Add booking functionality
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookingPage(
+                              roomTitle: roomDetails['title']!,
+                              pricePerDay: 180.0,
+                            ),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.teal[900],
