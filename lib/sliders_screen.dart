@@ -92,6 +92,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                               _titles[index],
                               style: const TextStyle(
                                 fontSize: 24,
+                                color: Color.fromARGB(255, 2, 83, 50),
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Poppins',
                               ),
