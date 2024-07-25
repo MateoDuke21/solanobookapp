@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'my_bookings_manager.dart'; // Import your bookings manager
+import 'package:quickalert/quickalert.dart'; // Ensure this package is included in your pubspec.yaml
 
 class MyBookingsPage extends StatefulWidget {
   const MyBookingsPage({super.key});
@@ -9,6 +10,26 @@ class MyBookingsPage extends StatefulWidget {
 }
 
 class _MyBookingsPageState extends State<MyBookingsPage> {
+  void _showDeleteConfirmationDialog(Map<String, String> booking) {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.confirm,
+      text: 'Sure you want to delete this booking?',
+      confirmBtnText: 'Yes',
+      cancelBtnText: 'No',
+      confirmBtnColor: Colors.red,
+      onConfirmBtnTap: () {
+        setState(() {
+          MyBookingsManager.removeBooking(booking);
+        });
+        Navigator.of(context).pop(); // Close the alert dialog
+      },
+      onCancelBtnTap: () {
+        Navigator.of(context).pop(); // Close the alert dialog
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,14 +52,17 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
         ),
       ),
       body: MyBookingsManager.bookings.isEmpty
-          ? const Center(child: Text('No bookings yet.',
-              style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
-              color: Colors.black87,
-              fontFamily: 'Poppins',
-            ),
-          ))
+          ? const Center(
+              child: Text(
+                'No bookings yet.',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                ),
+              ),
+            )
           : ListView.builder(
               itemCount: MyBookingsManager.bookings.length,
               itemBuilder: (context, index) {
@@ -56,10 +80,9 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
                     subtitle: Text(booking['price']!),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete),
+                      color: Colors.red,
                       onPressed: () {
-                        setState(() {
-                          MyBookingsManager.removeBooking(booking);
-                        });
+                        _showDeleteConfirmationDialog(booking);
                       },
                     ),
                   ),

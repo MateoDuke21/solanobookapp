@@ -67,7 +67,7 @@ class _SuiteRoomState extends State<SuiteRoom> {
                   ),
                   IconButton(
                     icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      isFavorite ? Icons.favorite : Icons.favorite_border, color: Colors.teal[900],
                     ),
                     onPressed: () {
                       setState(() {

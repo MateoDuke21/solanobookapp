@@ -56,7 +56,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     title: Text(favorite['title']!),
                     subtitle: Text(favorite['price']!),
                     trailing: IconButton(
-                      icon: const Icon(Icons.favorite),
+                      icon: const Icon(Icons.favorite),color: Colors.teal[900],
                       onPressed: () {
                         setState(() {
                           FavoritesManager.toggleFavorite(favorite);
