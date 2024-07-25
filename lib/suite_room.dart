@@ -79,7 +79,7 @@ class _SuiteRoomState extends State<SuiteRoom> {
                   const SizedBox(height: 8),
                   Text(
                     roomDetails['price']!,
-                    style: const TextStyle(fontSize: 20, color: Colors.green),
+                    style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 1, 83, 70)),
                   ),
                   const SizedBox(height: 8),
                   const Row(

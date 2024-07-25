@@ -259,7 +259,7 @@
                               ],
                             ),
                             IconButton(
-                              icon: const Icon(Icons.favorite, color: Colors.white),
+                              icon: const Icon(Icons.favorite, color: Colors.amber),
                               onPressed: () {
                                 // Navigate to Dining page
                                 Navigator.push(
