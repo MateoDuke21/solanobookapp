@@ -145,7 +145,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                     ? IconButton(
                         onPressed: _goToPreviousPage,
                         icon: const Icon(Icons.arrow_back),
-                        color: Colors.black,
+                        color: Colors.teal[900],
                       )
                     : Container(),
               ),
@@ -156,7 +156,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                     ? IconButton(
                         onPressed: _goToNextPage,
                         icon: const Icon(Icons.arrow_forward),
-                        color: Colors.black,
+                        color: Colors.teal[900],
                       )
                     : ElevatedButton(
                         onPressed: () {

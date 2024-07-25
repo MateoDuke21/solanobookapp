@@ -99,7 +99,7 @@ class _SuperiorRoomState extends State<SuperiorRoom> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
-                  Text(roomDetails['features']!),
+                  Text(roomDetails['features']!, textAlign: TextAlign.justify,),
                   const SizedBox(height: 16),
                   const Text(
                     'Capacity',

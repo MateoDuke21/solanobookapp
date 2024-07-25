@@ -75,6 +75,7 @@ class RoomsTab extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           'At Solano Hotel, we take pride in offering exceptional hotel accommodations in Lipa City, where providing guests with the best possible experience is our top priority. All 40 of our rooms are stylish and serene, designed with quality locally made furnishings and modern amenities to make your stay as comfortable as possible. Whether you are in Lipa City for business or are looking for family-friendly accommodations, you are sure to find that there’s an ideal haven waiting for you.',
+                          textAlign: TextAlign.justify,
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -127,7 +128,7 @@ class RoomsTab extends StatelessWidget {
         style: const TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.bold,
-          color: Colors.black, // Change the color to black
+          color: Colors.black87, // Change the color to black
           fontFamily: 'Poppins',
         ),
       ),
@@ -183,7 +184,7 @@ class RoomsTab extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal[900],
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
                     child: const Text(

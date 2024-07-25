@@ -69,8 +69,9 @@ class _BookingPageState extends State<BookingPage> {
     QuickAlert.show(
       context: context,
       type: QuickAlertType.success,
-      text: 'Transaction Completed Successfully!',
-      autoCloseDuration: const Duration(seconds: 2),
+      text: 'Booking Completed Successfully!',
+      confirmBtnColor: Colors.amber,
+      //autoCloseDuration: const Duration(seconds: 2),
       onConfirmBtnTap: () {
         Navigator.pop(context); // Close the dialog
         Navigator.pop(context); // Go back to the previous screen

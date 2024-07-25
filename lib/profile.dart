@@ -194,7 +194,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       vertical: 16.0), // Button padding
                   shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.circular(8.0), // Button border radius
+                        BorderRadius.circular(20.0), // Button border radius
                   ),
                 ),
                 child: const Text('Save'),
@@ -260,6 +260,7 @@ class ProfilePage extends StatelessWidget {
               style: TextButton.styleFrom(
                 foregroundColor: Colors.black, // Set text color
                 textStyle: const TextStyle(fontFamily: 'Poppins'),
+                backgroundColor: Colors.red
               ),
               child: const Text('SIGN OUT'),
             ),
@@ -514,7 +515,7 @@ class _HelpScreenState extends State<HelpScreen> {
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
                   child: const Text('Send'),

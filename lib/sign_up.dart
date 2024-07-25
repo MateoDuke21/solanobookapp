@@ -13,6 +13,8 @@ class _SignupFormState extends State<SignupForm> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   void _signUp() {
     if (_formKey.currentState!.validate()) {
@@ -95,6 +97,17 @@ class _SignupFormState extends State<SignupForm> {
                       cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
+                        ),
                         labelText: 'Password',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
@@ -105,7 +118,7 @@ class _SignupFormState extends State<SignupForm> {
                           borderSide: const BorderSide(color: Colors.teal),
                         ),
                       ),
-                      obscureText: true,
+                      obscureText: !_isPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
@@ -120,6 +133,17 @@ class _SignupFormState extends State<SignupForm> {
                       cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                            });
+                          },
+                        ),
                         labelText: 'Confirm Password',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
@@ -130,7 +154,7 @@ class _SignupFormState extends State<SignupForm> {
                           borderSide: const BorderSide(color: Colors.teal),
                         ),
                       ),
-                      obscureText: true,
+                      obscureText: !_isConfirmPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please confirm your password';
@@ -168,9 +192,10 @@ class _SignupFormState extends State<SignupForm> {
                       },
                       child: const Text(
                         'Back to Login',
-                        style: TextStyle(color: Colors.white,
-                        fontSize: 13,
-                        fontFamily: 'Poppins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontFamily: 'Poppins',
                         ),
                       ),
                     ),

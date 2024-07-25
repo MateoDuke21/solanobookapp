@@ -48,7 +48,7 @@
             children: <Widget>[
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.teal,
+                  color: Color.fromARGB(255, 0, 70, 52),
                 ),
                 child: Text(
                   'Menu',
@@ -61,32 +61,60 @@
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text('Home'),
+                leading: const Icon(Icons.home, color: Color.fromARGB(255, 0, 59, 42),),
+                title: const Text('Home',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   _onItemTapped(0);
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.search),
-                title: const Text('Search'),
+                leading: const Icon(Icons.search, color: Color.fromARGB(255, 0, 59, 42),),
+                title: const Text('Search',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   _onItemTapped(1);
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.door_front_door),
-                title: const Text('Rooms'),
+                leading: const Icon(Icons.door_front_door, color: Color.fromARGB(255, 0, 59, 42),),
+                title: const Text('Rooms',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   _onItemTapped(2);
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.dinner_dining),
-                title: const Text('Dining'),
+                leading: const Icon(Icons.dinner_dining, color: Color.fromARGB(255, 0, 59, 42),),
+                title: const Text('Dining',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -96,8 +124,15 @@
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.favorite),
-                title: const Text('Favorites'),
+                leading: const Icon(Icons.favorite, color: Color.fromARGB(255, 0, 59, 42),),
+                title: const Text('Favorites',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -107,8 +142,15 @@
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.book),
-                title: const Text('My Bookings'),
+                leading: const Icon(Icons.book, color: Color.fromARGB(255, 0, 59, 42),),
+                title: const Text('My Bookings',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -118,8 +160,15 @@
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('Profile'),
+                leading: const Icon(Icons.person, color: Color.fromARGB(255, 0, 59, 42),),
+                title: const Text('Profile',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black87,
+                  fontFamily: 'Poppins',
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -313,7 +362,7 @@
         child: Text(
           title,
           style: const TextStyle(
-            fontSize: 22,
+            fontSize: 25,
             fontWeight: FontWeight.bold,
             fontFamily: 'Poppins',
           ),
@@ -337,7 +386,7 @@
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Poppins',
                   ),
@@ -346,7 +395,7 @@
                 Text(
                   description,
                   style: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontFamily: 'Poppins',
                   ),
                 ),
@@ -577,7 +626,7 @@
                       fit: BoxFit.cover,
                     ),
                     title: Text(item['title']!),
-                    subtitle: Text(item['description']!),
+                    subtitle: Text(item['description']!, textAlign: TextAlign.justify,),
                   ),
                 );
               },

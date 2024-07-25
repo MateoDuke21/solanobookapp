@@ -31,7 +31,14 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
         ),
       ),
       body: MyBookingsManager.bookings.isEmpty
-          ? const Center(child: Text('No bookings yet.'))
+          ? const Center(child: Text('No bookings yet.',
+              style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
+              color: Colors.black87,
+              fontFamily: 'Poppins',
+            ),
+          ))
           : ListView.builder(
               itemCount: MyBookingsManager.bookings.length,
               itemBuilder: (context, index) {

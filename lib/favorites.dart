@@ -31,7 +31,15 @@ class _FavoritesPageState extends State<FavoritesPage> {
         ),
       ),
       body: FavoritesManager.favorites.isEmpty
-          ? const Center(child: Text('No favorites yet.'))
+          ? const Center(child: Text('No favorites yet.', 
+              style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
+              color: Colors.black87,
+              fontFamily: 'Poppins',
+            ),
+          )
+        )
           : ListView.builder(
               itemCount: FavoritesManager.favorites.length,
               itemBuilder: (context, index) {

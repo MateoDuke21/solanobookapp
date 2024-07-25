@@ -217,35 +217,36 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
   final TextEditingController _newPasswordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _isNewPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   void _resetPassword() {
-  if (_formKey.currentState!.validate()) {
-    String email = _emailController.text;
-    String newPassword = _newPasswordController.text;
+    if (_formKey.currentState!.validate()) {
+      String email = _emailController.text;
+      String newPassword = _newPasswordController.text;
 
-    final user = UserData.getUserByEmail(email);
+      final user = UserData.getUserByEmail(email);
 
-    // ignore: unnecessary_null_comparison
-    if (user != null) {
-      UserData.updatePassword(email, newPassword);
+      // ignore: unnecessary_null_comparison
+      if (user != null) {
+        UserData.updatePassword(email, newPassword);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Password reset successfully')),
-      );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Password reset successfully')),
+        );
 
-      Navigator.pop(context);
+        Navigator.pop(context);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Email is not registered')),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Email is not registered')),
+        const SnackBar(content: Text('Please fix the errors in the form')),
       );
     }
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please fix the errors in the form')),
-    );
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -310,6 +311,19 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                       cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isNewPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isNewPasswordVisible = !_isNewPasswordVisible;
+                            });
+                          },
+                        ),
                         labelText: 'New Password',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
@@ -320,7 +334,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                           borderSide: const BorderSide(color: Colors.teal),
                         ),
                       ),
-                      obscureText: true,
+                      obscureText: !_isNewPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your new password';
@@ -335,6 +349,19 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                       cursorColor: Colors.teal,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isConfirmPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                            });
+                          },
+                        ),
                         labelText: 'Confirm Password',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
@@ -345,7 +372,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                           borderSide: const BorderSide(color: Colors.teal),
                         ),
                       ),
-                      obscureText: true,
+                      obscureText: !_isConfirmPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please confirm your new password';
@@ -367,7 +394,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                         minimumSize: const Size(150, 50),
                       ),
                       child: const Text(
-                        'Reset',
+                        'Reset Password',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

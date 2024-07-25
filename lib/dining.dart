@@ -69,6 +69,7 @@ class DiningPage extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           'Treat your taste buds to the rich culinary history of the Philippines. Solano Hotel offers three in-house dining options, all of which serve irresistibly bold flavors that will satisfy your cravings. Enjoy signature dining experiences only at Solano Hotel.',
+                          textAlign: TextAlign.justify,
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -162,10 +163,11 @@ class _DiningSectionState extends State<DiningSection> {
               fontFamily: 'Poppins',
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 15),
           Image.asset(widget.imagePath, height: 150, width: double.infinity, fit: BoxFit.cover),
-          const SizedBox(height: 8),
+          const SizedBox(height: 15),
           Text(
+            textAlign: TextAlign.justify,
             widget.description,
             style: const TextStyle(
               fontSize: 16,
@@ -177,7 +179,7 @@ class _DiningSectionState extends State<DiningSection> {
             alignment: Alignment.center,
             children: [
               SizedBox(
-                height: 200,
+                height: 300,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: widget.menuImagePaths.length,
