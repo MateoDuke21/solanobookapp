@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart'; // Import authentication_screen.dart
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Slider Startup Screen',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      home: const SlidersScreen(),
-    );
-  }
-}
+import 'login.dart'; 
 
 class SlidersScreen extends StatefulWidget {
   const SlidersScreen({super.key});
@@ -84,32 +67,35 @@ class _SlidersScreenState extends State<SlidersScreen> {
                       ),
                       Expanded(
                         flex: 3,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 20),
-                            Text(
-                              _titles[index],
-                              style: const TextStyle(
-                                fontSize: 24,
-                                color: Color.fromARGB(255, 2, 83, 50),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                              child: Text(
-                                _descriptions[index],
-                                textAlign: TextAlign.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20.0), // Adjust top padding
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 30), // Adjust spacing from image
+                              Text(
+                                _titles[index],
                                 style: const TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 24,
+                                  color: Color.fromARGB(255, 2, 83, 50),
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: 'Poppins',
                                 ),
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                                child: Text(
+                                  _descriptions[index],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
