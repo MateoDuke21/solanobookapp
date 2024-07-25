@@ -21,13 +21,19 @@ class _SignupFormState extends State<SignupForm> {
       String email = _emailController.text;
       String password = _passwordController.text;
 
-      UserData.addUser(email, password);
+      if (UserData.getUserByEmail(email).email.isNotEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Email is already registered')),
+        );
+      } else {
+        UserData.addUser(email, password);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Account created successfully')),
-      );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Account created successfully')),
+        );
 
-      Navigator.pop(context);
+        Navigator.pop(context);
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fix the errors in the form')),
