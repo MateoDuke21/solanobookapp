@@ -141,6 +141,7 @@ class _SuperiorRoomState extends State<SuperiorRoom> {
                             builder: (context) => BookingPage(
                               roomTitle: roomDetails['title']!,
                               pricePerDay: 200.0,
+                              imageUrl: 'assets/images/superior-room.jpg',
                             ),
                           ),
                         );

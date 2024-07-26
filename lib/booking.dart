@@ -4,16 +4,18 @@ import 'package:quickalert/quickalert.dart';
 import 'my_bookings_manager.dart'; // Import your bookings manager
 // ignore: unused_import
 import 'my_bookings.dart'; // Import your bookings page
-import 'rooms_tab.dart'; 
+import 'rooms_tab.dart';
 
 class BookingPage extends StatefulWidget {
   final String roomTitle;
   final double pricePerDay;
+  final String imageUrl; // Add imageUrl parameter
 
   const BookingPage({
     Key? key,
     required this.roomTitle,
     required this.pricePerDay,
+    required this.imageUrl, // Initialize imageUrl
   }) : super(key: key);
 
   @override
@@ -59,7 +61,7 @@ class _BookingPageState extends State<BookingPage> {
     // Save booking details
     final bookingDetails = {
       'title': widget.roomTitle,
-      'imageUrl': 'assets/images/${widget.roomTitle.toLowerCase().replaceAll(' ', '-')}.jpg',
+      'imageUrl': widget.imageUrl, // Use the passed imageUrl
       'price': '\$${_totalAmount.toStringAsFixed(2)}',
     };
 

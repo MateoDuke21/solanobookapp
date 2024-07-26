@@ -143,6 +143,7 @@ class _SuiteRoomState extends State<SuiteRoom> {
                             builder: (context) => BookingPage(
                               roomTitle: roomDetails['title']!,
                               pricePerDay: 150.0,
+                              imageUrl: 'assets/images/suite-room-I.jpg',
                             ),
                           ),
                         );
